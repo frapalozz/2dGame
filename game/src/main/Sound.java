@@ -18,6 +18,9 @@ public class Sound {
         soundFile[2] = new File("game/res/sound/powerup.wav");
         soundFile[3] = new File("game/res/sound/unlock.wav");
         soundFile[4] = new File("game/res/sound/fanfare.wav");
+        soundFile[5] = new File("game/res/sound/hitmonster.wav");
+        soundFile[6] = new File("game/res/sound/receivedamage.wav");
+        soundFile[7] = new File("game/res/sound/swingweapon.wav");
         
     }
 

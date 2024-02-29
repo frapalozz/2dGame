@@ -165,7 +165,7 @@ public class Player extends Entity{
             // Adjust player's worldX/Y for the attackArea
             switch (direction) {
                 case "up": worldY -= attackArea.height; break;
-                case "down": worldY = attackArea.height; break;
+                case "down": worldY += attackArea.height; break;
                 case "left": worldX -= attackArea.width; break;
                 case "right": worldX += attackArea.width; break;
             }
@@ -206,6 +206,7 @@ public class Player extends Entity{
         
             }
             else {
+                gp.playSE(7);
                 attacking = true;
             }
         }
@@ -215,6 +216,7 @@ public class Player extends Entity{
         if(i != 999) {
 
             if(invincible == false) {
+                gp.playSE(6);
                 life -= 1;
                 invincible = true;
             }
@@ -225,11 +227,14 @@ public class Player extends Entity{
         if(i != 999) {
             
             if(!gp.monster[i].invincible) {
+
+                gp.playSE(5);
                 gp.monster[i].life--;
                 gp.monster[i].invincible = true;
+                gp.monster[i].damageReaction();
 
                 if(gp.monster[i].life <= 0) {
-                    gp.monster[i] = null;
+                    gp.monster[i].dying = true;
                 }
             }
         }
