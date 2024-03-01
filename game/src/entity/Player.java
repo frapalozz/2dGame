@@ -39,9 +39,6 @@ public class Player extends Entity{
         solidArea.width = 32;
         solidArea.height = 32;
 
-        attackArea.width = 36;
-        attackArea.height = 36;
-
         setDefaultValues();
         getPlayerImage();
         getPlayerAttackImage();
@@ -73,9 +70,11 @@ public class Player extends Entity{
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new OBJ_Key(gp));
-        inventory.add(new OBJ_Key(gp));
     }
-    public int getAttack() {return strength * currentWeapon.attackValue;}
+    public int getAttack() {
+        attackArea = currentWeapon.attackArea;
+        return strength * currentWeapon.attackValue;
+    }
     public int getDefense() {return dexterity * currentShield.defenseValue;}
 
     public void getPlayerImage() {
@@ -228,7 +227,19 @@ public class Player extends Entity{
 
         if(i != 999) {
 
-            
+            String text;
+
+            if(inventory.size() != maxInventorySize) {
+
+                inventory.add(gp.obj[i]);
+                gp.playSE(1);
+                text = "Got a " + gp.obj[i].name + "!";
+            }
+            else {
+                text = "You cannot carry any more!";
+            }
+            gp.ui.addMessage(text);
+            gp.obj[i] = null;
         }
     }
     public void interactNPC(int i) {
@@ -301,6 +312,24 @@ public class Player extends Entity{
             gp.playSE(8);
             gp.gameState = gp.dialogueState;
             gp.ui.currentDialogue = "You are level " + level + " now!\nYou feel stronger!";
+        }
+    }
+    public void selectItem() {
+
+        int itemIndex = gp.ui.getItemIndexOnSlot();
+
+        if(itemIndex < inventory.size()) {
+
+            Entity selectedItem = inventory.get(itemIndex);
+
+            if(selectedItem.type == type_sword || selectedItem.type == type_axe) {
+                currentWeapon = selectedItem;
+                attack = getAttack();
+            }
+            if(selectedItem.type == type_shield) {
+                currentShield = selectedItem;
+                defense = getDefense();
+            }
         }
     }
     public void draw(Graphics2D g2) {

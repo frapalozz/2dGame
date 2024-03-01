@@ -2,6 +2,8 @@ package main;
 
 import entity.NPC_OldMan;
 import monster.MON_GreenSlime;
+import object.OBJ_Axe;
+import object.OBJ_Key;
 
 public class AssetSetter {
     
@@ -13,6 +15,23 @@ public class AssetSetter {
 
     public void setObject() {
 
+        int i = 0;
+        gp.obj[i] = new OBJ_Key(gp);
+        gp.obj[i].worldX = gp.tileSize*25;
+        gp.obj[i].worldY = gp.tileSize*19;
+        i++;
+        gp.obj[i] = new OBJ_Key(gp);
+        gp.obj[i].worldX = gp.tileSize*24;
+        gp.obj[i].worldY = gp.tileSize*19;
+        i++;
+        gp.obj[i] = new OBJ_Key(gp);
+        gp.obj[i].worldX = gp.tileSize*23;
+        gp.obj[i].worldY = gp.tileSize*19;
+        i++;
+        gp.obj[i] = new OBJ_Axe(gp);
+        gp.obj[i].worldX = gp.tileSize*20;
+        gp.obj[i].worldY = gp.tileSize*19;
+        i++;
     }
     public void setNPC() {
 
@@ -30,18 +49,6 @@ public class AssetSetter {
         gp.monster[i] = new MON_GreenSlime(gp);
         gp.monster[i].worldX = gp.tileSize*23;
         gp.monster[i].worldY = gp.tileSize*37;
-        i++;
-        gp.monster[i] = new MON_GreenSlime(gp);
-        gp.monster[i].worldX = gp.tileSize*34;
-        gp.monster[i].worldY = gp.tileSize*37;
-        i++;
-        gp.monster[i] = new MON_GreenSlime(gp);
-        gp.monster[i].worldX = gp.tileSize*34;
-        gp.monster[i].worldY = gp.tileSize*42;
-        i++;
-        gp.monster[i] = new MON_GreenSlime(gp);
-        gp.monster[i].worldX = gp.tileSize*36;
-        gp.monster[i].worldY = gp.tileSize*42;
 
     }
 }
