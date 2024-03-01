@@ -22,6 +22,7 @@ public class Sound {
         soundFile[6] = new File("game/res/sound/receivedamage.wav");
         soundFile[7] = new File("game/res/sound/swingweapon.wav");
         soundFile[8] = new File("game/res/sound/levelup.wav");
+        soundFile[9] = new File("game/res/sound/cursor.wav");
         
     }
 

@@ -8,7 +8,7 @@ public class KeyHandler implements KeyListener{
     GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
     // DEBUG
-    boolean checkDrawTime = false;
+    boolean showDebugText = false;
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
@@ -93,7 +93,10 @@ public class KeyHandler implements KeyListener{
 
         // DEBUG
         if(code == KeyEvent.VK_T) {
-            checkDrawTime = !checkDrawTime;
+            showDebugText = !showDebugText;
+        }
+        if(code == KeyEvent.VK_R) {
+            gp.tileM.loadMap("game/res/maps/worldV2.txt");
         }
     }
 
@@ -115,6 +118,30 @@ public class KeyHandler implements KeyListener{
 
         if(code == KeyEvent.VK_C) {
             gp.gameState = gp.playState;
+        }
+        if(code == KeyEvent.VK_W) {
+            if(gp.ui.slotRow != 0) {
+                gp.ui.slotRow--;
+                gp.playSE(9);
+            }
+        }
+        if(code == KeyEvent.VK_A) {
+            if(gp.ui.slotCol != 0) {
+                gp.ui.slotCol--;
+                gp.playSE(9);
+            }
+        }
+        if(code == KeyEvent.VK_S) {
+            if(gp.ui.slotRow != 3) {
+                gp.ui.slotRow++;
+                gp.playSE(9);
+            }
+        }
+        if(code == KeyEvent.VK_D) {
+            if(gp.ui.slotCol != 4) {
+                gp.ui.slotCol++;
+                gp.playSE(9); 
+            }
         }
     }
 
