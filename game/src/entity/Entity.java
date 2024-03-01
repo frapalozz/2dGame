@@ -64,7 +64,7 @@ public class Entity {
 
     // ITEM ATTRIBUTES
     public int attackValue;
-    public int defensValue;
+    public int defenseValue;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -106,10 +106,15 @@ public class Entity {
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
         if(this.type == 2 && contactPlayer) {
-            if(!gp.player.invincible) {
+            if(!gp.player.invincible && !this.dying && this.alive) {
                 // we can give damage
                 gp.playSE(6);
-                gp.player.life--;
+
+                int damage = attack - gp.player.defense;
+                if(damage < 0) {
+                    damage = 0;
+                }
+                gp.player.life -= damage;
                 gp.player.invincible = true;
             }
         }
@@ -223,8 +228,8 @@ public class Entity {
         if(dyingCounter > i*6 && dyingCounter <= i*7) {changeAlpha(g2, 0f);}
         if(dyingCounter > i*7 && dyingCounter <= i*8) {changeAlpha(g2, 1f);}
         if(dyingCounter > i*8) {
-            dying = false;
             alive = false;
+            dying = false;
         }
     }
     public void changeAlpha(Graphics2D g2, float alphaValue) {
