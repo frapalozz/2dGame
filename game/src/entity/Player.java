@@ -330,6 +330,9 @@ public class Player extends Entity{
                 currentShield = selectedItem;
                 defense = getDefense();
             }
+            if(selectedItem.type == type_consumable) {
+                // later
+            }
         }
     }
     public void draw(Graphics2D g2) {
