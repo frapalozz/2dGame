@@ -57,6 +57,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueState = 3;
+    public final int characterState = 4;
 
     public GamePanel() {
 
@@ -191,15 +192,16 @@ public class GamePanel extends JPanel implements Runnable{
                 }
                 
             });
-
-            // UI
-            ui.draw(g2);
         }
 
         // DRAW ENTITIES
         for(int i = 0; i < entityList.size(); i++) {
             entityList.get(i).draw(g2);
         }
+
+        // UI
+        ui.draw(g2);
+        
         // EMPTY ENTITY LIST
         entityList.clear();
 
