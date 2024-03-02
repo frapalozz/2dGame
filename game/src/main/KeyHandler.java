@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
 
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, shotKeyPressed;
     // DEBUG
     boolean showDebugText = false;
 
@@ -38,7 +38,6 @@ public class KeyHandler implements KeyListener{
         else if(gp.gameState == gp.characterState) {characterState(code);}
 
     }
-
     public void titleState(int code) {
 
         if(code == KeyEvent.VK_W) {
@@ -89,6 +88,9 @@ public class KeyHandler implements KeyListener{
         if(code == KeyEvent.VK_ENTER) {
             enterPressed = true;
         }
+        if(code == KeyEvent.VK_F) {
+            shotKeyPressed = true;
+        }
         
 
         // DEBUG
@@ -99,21 +101,18 @@ public class KeyHandler implements KeyListener{
             gp.tileM.loadMap("game/res/maps/worldV2.txt");
         }
     }
-
     public void pauseState(int code) {
 
         if(code == KeyEvent.VK_P) {
             gp.gameState = gp.playState;
         }
     }
-
     public void dialogueState(int code) {
 
         if(code == KeyEvent.VK_ENTER) {
             gp.gameState = gp.playState;
         }
     }
-
     public void characterState(int code) {
 
         if(code == KeyEvent.VK_C) {
@@ -147,7 +146,6 @@ public class KeyHandler implements KeyListener{
             gp.player.selectItem();
         }
     }
-
     @Override
     public void keyReleased(KeyEvent e) {
 
@@ -164,6 +162,9 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_D) {
             rightPressed = false;
+        }
+        if(code == KeyEvent.VK_F) {
+            shotKeyPressed = false;
         }
     }
     
