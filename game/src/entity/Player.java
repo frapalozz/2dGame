@@ -216,6 +216,12 @@ public class Player extends Entity{
         if(shotAvaibleCounter < 30) {
             shotAvaibleCounter++;
         }
+        if(life > maxLife) {
+            life = maxLife;
+        }
+        if(mana > maxMana) {
+            mana = maxMana;
+        }
     }
     public void attacking() {
 
@@ -264,19 +270,29 @@ public class Player extends Entity{
 
         if(i != 999) {
 
-            String text;
+            // PICKUP ONLY ITEMS
+            if(gp.obj[i].type == type_pickupOnly) {
 
-            if(inventory.size() != maxInventorySize) {
-
-                inventory.add(gp.obj[i]);
-                gp.playSE(1);
-                text = "Got a " + gp.obj[i].name + "!";
+                gp.obj[i].use(this);
+                gp.obj[i] = null;
             }
+
+            // INVENTORY ITEMS
             else {
-                text = "You cannot carry any more!";
+                String text;
+
+                if(inventory.size() != maxInventorySize) {
+
+                    inventory.add(gp.obj[i]);
+                    gp.playSE(1);
+                    text = "Got a " + gp.obj[i].name + "!";
+                }
+                else {
+                    text = "You cannot carry any more!";
+                }
+                gp.ui.addMessage(text);
+                gp.obj[i] = null;
             }
-            gp.ui.addMessage(text);
-            gp.obj[i] = null;
         }
     }
     public void interactNPC(int i) {
@@ -315,16 +331,17 @@ public class Player extends Entity{
                 gp.playSE(5);
 
                 int damage = attack - gp.monster[i].defense;
-                if(damage < 0) {
+                if(damage < 0 && gp.monster[i].life <= 0) {
                     damage = 0;
                 }
+                
                 gp.monster[i].life -= damage;
                 gp.ui.addMessage(damage + "damage!");
 
                 gp.monster[i].invincible = true;
                 gp.monster[i].damageReaction();
 
-                if(gp.monster[i].life <= 0) {
+                if(gp.monster[i].life <= 0 && !gp.monster[i].dying) {
                     gp.monster[i].dying = true;
                     gp.ui.addMessage("Killed the " + gp.monster[i].name + "!");
                     gp.ui.addMessage("Exp + " + gp.monster[i].exp);
