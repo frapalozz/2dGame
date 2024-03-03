@@ -43,6 +43,9 @@ public class KeyHandler implements KeyListener{
         // GAME OVER STATE
         else if(gp.gameState == gp.gameOverState) {gameOverState(code);}
 
+        // TRAD STATE
+        else if(gp.gameState == gp.tradeState) {tradeState(code);}
+
     }
     public void titleState(int code) {
 
@@ -242,6 +245,28 @@ public class KeyHandler implements KeyListener{
             }
         }
 
+    }
+    public void tradeState(int code) {
+
+        if(code == KeyEvent.VK_ENTER) {
+            enterPressed = true;
+        }
+        if(gp.ui.subState == 0) {
+            if(code == KeyEvent.VK_W) {
+                gp.ui.commandNum--;
+                if(gp.ui.commandNum < 0) {
+                    gp.ui.commandNum = 2;
+                }
+                gp.playSE(9);
+            }
+            if(code == KeyEvent.VK_S) {
+                gp.ui.commandNum++;
+                if(gp.ui.commandNum > 2) {
+                    gp.ui.commandNum = 0;
+                }
+                gp.playSE(9);
+            }
+        }
     }
 
     @Override
