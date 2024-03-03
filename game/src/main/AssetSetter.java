@@ -1,13 +1,9 @@
 package main;
 
+import entity.NPC_Merchant;
 import entity.NPC_OldMan;
 import monster.MON_GreenSlime;
 import object.OBJ_Axe;
-import object.OBJ_Coin_Bronze;
-import object.OBJ_Heart;
-import object.OBJ_ManaCrystal;
-import object.OBJ_Potion_Red;
-import object.OBJ_Shield_Blue;
 import tile_interactive.IT_DryTree;
 
 public class AssetSetter {
@@ -34,6 +30,14 @@ public class AssetSetter {
         gp.npc[mapNum][i] = new NPC_OldMan(gp);
         gp.npc[mapNum][i].worldX = gp.tileSize*21;
         gp.npc[mapNum][i].worldY = gp.tileSize*21;
+        i++;
+
+        // MAP 1
+        mapNum = 1;
+        i = 0;
+        gp.npc[mapNum][i] = new NPC_Merchant(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize*12;
+        gp.npc[mapNum][i].worldY = gp.tileSize*7;
         i++;
     }
     public void setMonster() {

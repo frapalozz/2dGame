@@ -10,7 +10,6 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import main.GamePanel;
 
@@ -20,8 +19,6 @@ public class Player extends Entity{
     public final int screenX;
     public final int screenY;
     public boolean attackCanceled = false;
-    public ArrayList<Entity> inventory = new ArrayList<>();
-    public final int maxInventorySize = 20;
 
     public Player(GamePanel gp, KeyHandler keyH) {
 
@@ -168,7 +165,7 @@ public class Player extends Entity{
             contactMonster(monsterIndex);
 
             // CHECK INTERACTIVE TILE COLLISION
-            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+            //gp.cChecker.checkEntity(this, gp.iTile);
 
             // CHECK EVENT
             gp.eHandler.checkEvent();
