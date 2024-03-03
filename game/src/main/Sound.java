@@ -30,6 +30,7 @@ public class Sound {
         soundFile[10] = new File("game/res/sound/burning.wav");
         soundFile[11] = new File("game/res/sound/cuttree.wav");
         soundFile[12] = new File("game/res/sound/gameover.wav");
+        soundFile[13] = new File("game/res/sound/stairs.wav");
         
     }
 
