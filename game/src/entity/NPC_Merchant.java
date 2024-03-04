@@ -25,6 +25,7 @@ public class NPC_Merchant extends Entity{
 
         getImage();
         setDialogue();
+        setItems();
     }
     public void getImage() {
 

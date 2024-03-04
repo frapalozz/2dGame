@@ -1,6 +1,7 @@
 package entity;
 
 import main.KeyHandler;
+import object.OBJ_Axe;
 import object.OBJ_Fireball;
 import object.OBJ_Key;
 import object.OBJ_Shield_Wood;
@@ -60,7 +61,7 @@ public class Player extends Entity{
         dexterity = 1; // The morxteity he has, the less damage he receives
         exp = 0;
         nextLevelExp = 5;
-        coin = 0;
+        coin = 500;
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         projectile = new OBJ_Fireball(gp);
@@ -83,6 +84,7 @@ public class Player extends Entity{
 
         inventory.clear();
         inventory.add(currentWeapon);
+        inventory.add(new OBJ_Axe(gp));
         inventory.add(currentShield);
         inventory.add(new OBJ_Key(gp));
     }
@@ -408,7 +410,7 @@ public class Player extends Entity{
     }
     public void selectItem() {
 
-        int itemIndex = gp.ui.getItemIndexOnSlot();
+        int itemIndex = gp.ui.getItemIndexOnSlot(gp.ui.playerSlotCol, gp.ui.playerSlotRow);
 
         if(itemIndex < inventory.size()) {
 
